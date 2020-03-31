@@ -1,10 +1,12 @@
 #ifndef __EVENT_TIMER_H
 #define __EVENT_TIMER_H
 
+enum TIMER_STATE : uint8_t {TIMER_IDLE, TIMER_RUNNING};
+
 class EventTimer
 {
   protected:
-    uint8_t timerState = 0;
+    TIMER_STATE timerState = TIMER_IDLE;
     uint32_t startTime = 0;
     uint32_t duration = 0;
     
@@ -16,9 +18,9 @@ class EventTimer
     bool CheckExpired(void)
     {
         bool retVal = false;
-        if(millis() - startTime > duration && timerState == 1)
+        if(millis() - startTime > duration && timerState == TIMER_RUNNING) //NOT proper event checking, by the way...
         {
-            timerState = 0;
+            timerState = TIMER_IDLE;
             retVal = true;
         }
         
@@ -29,7 +31,7 @@ class EventTimer
     {
       startTime = millis();
       duration = dur;
-      timerState = 1;
+      timerState = TIMER_RUNNING;
       
       return startTime + dur;
     }
@@ -38,19 +40,19 @@ class EventTimer
     {
       if(dur != 0) duration = dur;
       startTime += duration;
-      timerState = 1;
+      timerState = TIMER_RUNNING;
       
       return startTime + duration;
     }
     
     void Cancel(void)
     {
-      timerState = 0;
+      timerState = TIMER_IDLE;
     }
     
-    int IsRunning(void)
+    bool IsRunning(void)
     {
-        return timerState;
+        return timerState == TIMER_RUNNING;
     }
 };
 
