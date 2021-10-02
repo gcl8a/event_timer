@@ -14,10 +14,12 @@ class EventTimer
     
   public:
     EventTimer(void) {}
+    EventTimer(unsigned long dur);
     
-    bool CheckExpired(void);
+    bool CheckExpired(bool restart = false);
     unsigned long Start(unsigned long dur);
     unsigned long Restart(unsigned long dur = 0);
+    unsigned long Snooze(unsigned long dur = 0) {return Restart(dur);}
     void Cancel(void);
     bool IsRunning(void);
 };

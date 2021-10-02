@@ -1,12 +1,18 @@
 #include <event_timer.h>
 
-bool EventTimer::CheckExpired(void)
+EventTimer::EventTimer(unsigned long dur)
+{
+  Start(dur);
+}
+
+bool EventTimer::CheckExpired(bool restart)
 {
     bool retVal = false;
     if(millis() - startTime > duration && timerState == TIMER_RUNNING)
     {
-        timerState = TIMER_IDLE;
-        retVal = true;
+      if(restart) Restart();
+      else timerState = TIMER_IDLE;
+      retVal = true;
     }
     
     return retVal;
