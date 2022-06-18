@@ -18,6 +18,8 @@ class EventTimer
     
     bool CheckExpired(bool restart = false);
     unsigned long Start(unsigned long dur);
+    unsigned long start(unsigned long dur) {return Start(dur);}
+    
     unsigned long Restart(unsigned long dur = 0);
     unsigned long Snooze(unsigned long dur = 0) {return Restart(dur);}
     void Cancel(void);
