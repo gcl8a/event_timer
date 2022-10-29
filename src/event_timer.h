@@ -16,8 +16,8 @@ class EventTimer
     EventTimer(void) {}
     EventTimer(unsigned long dur);
     
-    bool checkExpired(bool restart = false);
-    bool CheckExpired(bool restart = false) {return checkExpired(restart);}
+    bool checkExpired(bool autoRestart = false);
+    bool CheckExpired(bool autoRestart = false) {return checkExpired(restart);}
 
     unsigned long start(unsigned long dur);
     unsigned long Start(unsigned long dur) {return start(dur);}

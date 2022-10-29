@@ -5,12 +5,12 @@ EventTimer::EventTimer(unsigned long dur)
   start(dur);
 }
 
-bool EventTimer::checkExpired(bool restart)
+bool EventTimer::checkExpired(bool autoRestart)
 {
     bool retVal = false;
     if(millis() - startTime > duration && timerState == TIMER_RUNNING)
     {
-      if(restart) restart();
+      if(autoRestart) restart();
       else timerState = TIMER_IDLE;
       retVal = true;
     }
