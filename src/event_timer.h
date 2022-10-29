@@ -16,14 +16,20 @@ class EventTimer
     EventTimer(void) {}
     EventTimer(unsigned long dur);
     
-    bool CheckExpired(bool restart = false);
-    unsigned long Start(unsigned long dur);
-    unsigned long start(unsigned long dur) {return Start(dur);}
+    bool checkExpired(bool restart = false);
+    bool CheckExpired(bool restart = false) {return checkExpired(restart);}
+
+    unsigned long start(unsigned long dur);
+    unsigned long Start(unsigned long dur) {return start(dur);}
     
-    unsigned long Restart(unsigned long dur = 0);
-    unsigned long Snooze(unsigned long dur = 0) {return Restart(dur);}
-    void Cancel(void);
-    bool IsRunning(void);
+    unsigned long restart(unsigned long dur = 0);
+    unsigned long Restart(unsigned long dur = 0) {return restart(dur);}
+    
+    void cancel(void);
+    void Cancel(void) {cancel();}
+
+    bool isRunning(void);
+    bool IsRunning(void) {return isRunning();}
 };
 
 #endif

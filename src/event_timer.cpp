@@ -2,15 +2,15 @@
 
 EventTimer::EventTimer(unsigned long dur)
 {
-  Start(dur);
+  start(dur);
 }
 
-bool EventTimer::CheckExpired(bool restart)
+bool EventTimer::checkExpired(bool restart)
 {
     bool retVal = false;
     if(millis() - startTime > duration && timerState == TIMER_RUNNING)
     {
-      if(restart) Restart();
+      if(restart) restart();
       else timerState = TIMER_IDLE;
       retVal = true;
     }
@@ -18,7 +18,7 @@ bool EventTimer::CheckExpired(bool restart)
     return retVal;
 }
 
-unsigned long EventTimer::Start(unsigned long dur)
+unsigned long EventTimer::start(unsigned long dur)
 {
   startTime = millis();
   duration = dur;
@@ -27,7 +27,7 @@ unsigned long EventTimer::Start(unsigned long dur)
   return startTime + dur;
 }
 
-unsigned long EventTimer::Restart(unsigned long dur) //need a better name?
+unsigned long EventTimer::restart(unsigned long dur) //need a better name?
 {
   if(dur != 0) duration = dur;
   startTime += duration;
@@ -36,12 +36,12 @@ unsigned long EventTimer::Restart(unsigned long dur) //need a better name?
   return startTime + duration;
 }
 
-void EventTimer::Cancel(void)
+void EventTimer::cancel(void)
 {
   timerState = TIMER_IDLE;
 }
 
-bool EventTimer::IsRunning(void)
+bool EventTimer::isRunning(void)
 {
     return timerState == TIMER_RUNNING;
 }
