@@ -17,7 +17,7 @@ class EventTimer
     EventTimer(unsigned long dur);
     
     bool checkExpired(bool autoRestart = false);
-    bool CheckExpired(bool autoRestart = false) {return checkExpired(restart);}
+    bool CheckExpired(bool autoRestart = false) {return checkExpired(autoRestart);}
 
     unsigned long start(unsigned long dur);
     unsigned long Start(unsigned long dur) {return start(dur);}
